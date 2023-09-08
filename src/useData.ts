@@ -36,15 +36,22 @@ const useData = () => {
   const addTask = (title: string) => {
     tasksService
       .addTask(title)
-      .then((tasks) => setTasks(tasks))
+      .then((tasks) => {
+        setTasks(tasks);
+        showToastMessage("success");
+      })
+
       .catch((error) => setErrors(error));
-    console.log(error);
   };
 
   const removeTask = (id: string) => {
     tasksService
       .removeTask(id)
-      .then(({ tasks }) => setTasks(tasks))
+      .then(({ tasks }) => {
+        setTasks(tasks);
+        showToastMessage("delete");
+      })
+
       .catch(({ error }) => console.log(error));
   };
 
