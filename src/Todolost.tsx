@@ -63,10 +63,12 @@ const Todolist: React.FC<TDprops> = ({
           <button
             className="btn btn-success "
             onClick={() => {
-              addTask(title);
-              console.log(error);
-              showToastMessage();
-              setTitle("");
+              if (title) {
+                addTask(title);
+                setTitle("");
+              } else {
+                showToastMessage();
+              }
             }}
           >
             Создать

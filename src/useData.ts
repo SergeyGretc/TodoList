@@ -19,7 +19,7 @@ const useData = () => {
   }, [tasksService]);
 
   const showToastMessage = () => {
-    toast.error(error, {
+    toast.error("Error Notification !", {
       position: toast.POSITION.TOP_CENTER,
     });
     setErrors("");
