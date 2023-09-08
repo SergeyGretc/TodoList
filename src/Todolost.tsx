@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import icon from "./assets/trash.svg";
 
 type TaskType = {
-  id: number;
+  id: string;
   title: string;
-  complited: boolean;
+  completed: boolean;
 };
 
 type TDprops = {
@@ -14,7 +14,8 @@ type TDprops = {
   addTask: Function;
   changeStatus: Function;
   filter: string;
-  error: Boolean;
+  error: string;
+  showToastMessage: Function;
 };
 
 const Todolist: React.FC<TDprops> = ({
@@ -25,6 +26,7 @@ const Todolist: React.FC<TDprops> = ({
   changeStatus,
   filter,
   error,
+  showToastMessage,
 }) => {
   const [title, setTitle] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,9 +39,8 @@ const Todolist: React.FC<TDprops> = ({
       setTitle("");
     }
   };
-
   return (
-    <div className="align-items-center">
+    <div className="align-items-center mh-700" style={{ minHeight: "700px" }}>
       <h1 className="d-flex align-items-center justify-content-center">
         Todos
       </h1>
@@ -62,8 +63,9 @@ const Todolist: React.FC<TDprops> = ({
           <button
             className="btn btn-success "
             onClick={() => {
+              console.log(error);
               addTask(title);
-              console.log(title);
+              showToastMessage();
               setTitle("");
             }}
           >
@@ -71,9 +73,9 @@ const Todolist: React.FC<TDprops> = ({
           </button>
         </div>
 
-        {error && !title && (
+        {/* {error && !title && (
           <span className="text-danger ">Поле ввода не должно быть пустым</span>
-        )}
+        )} */}
       </div>
       <div>
         <ul className="list-group">
@@ -92,7 +94,7 @@ const Todolist: React.FC<TDprops> = ({
                   className="form-check-input me-3 m-0 "
                   id="flexCheckDefault"
                   type="checkbox"
-                  checked={el.complited}
+                  checked={el.completed}
                   onChange={onChangeHandler}
                 />
                 <label className="form-check-label " htmlFor="flexCheckDefault">
@@ -132,10 +134,10 @@ const Todolist: React.FC<TDprops> = ({
         </button>
         <button
           className={
-            filter === "complited" ? "btn btn-primary" : "btn btn-light"
+            filter === "completed" ? "btn btn-primary" : "btn btn-light"
           }
           onClick={() => {
-            changeFilter("complited");
+            changeFilter("completed");
           }}
         >
           Complited

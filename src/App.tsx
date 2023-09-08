@@ -1,53 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Todolist from "./Todolost";
-import { v1 } from "uuid";
+import useData from "./useData";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
-  const [tasks, setTasks] = useState<any[]>([]);
-  const [error, setErrors] = useState(false);
-  const [filter, setFilter] = useState("all");
+  const {
+    tasks,
+    filter,
+    error,
+    addTask,
+    changeFilter,
+    removeTask,
+    changeStatus,
+    showToastMessage,
+  } = useData();
 
-  useEffect(() => {
-    const items = localStorage.getItem("tasks");
-    if (items) {
-      setTasks(JSON.parse(items) as any[]);
-    }
-  }, []);
-
-  useEffect(() => {
-    const json = JSON.stringify(tasks);
-    localStorage.setItem("tasks", json);
-  }, [tasks]);
-  const changeFilter = (value: string) => {
-    setFilter(value);
-  };
-  const addTask = (title: string) => {
-    const newTask = { id: v1(), title: title, complited: false };
-    if (newTask.title === "") {
-      setErrors(true);
-    } else {
-      const newTasks = [newTask, ...tasks];
-      setErrors(false);
-      setTasks(newTasks);
-    }
-  };
-  const removeTask = (id: string): Promise<void> => {
-    const newTasks = tasks.filter((el) => el.id !== id);
-    setTasks(newTasks);
-    return Promise.resolve();
-  };
-
-  const changeStatus = (id: string, complited: boolean) => {
-    const task = tasks.find((el) => el.id === id);
-    task.complited = complited;
-    const changedTasks = [...tasks];
-    setTasks(changedTasks);
-  };
   let filteredTasks = tasks;
   if (filter === "active") {
-    filteredTasks = tasks.filter((el) => el.complited !== true);
+    filteredTasks = tasks.filter((el) => el.completed !== true);
   }
-  if (filter === "complited") {
-    filteredTasks = tasks.filter((el) => el.complited === true);
+  if (filter === "completed") {
+    filteredTasks = tasks.filter((el) => el.completed === true);
+  }
+  if (filter === "all") {
+    filteredTasks = tasks;
   }
   return (
     <div className="container mt-5">
@@ -61,7 +39,9 @@ function App() {
             changeStatus={changeStatus}
             filter={filter}
             error={error}
+            showToastMessage={showToastMessage}
           />
+          <ToastContainer />
         </div>
       </div>
     </div>
