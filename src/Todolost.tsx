@@ -44,9 +44,8 @@ const Todolist: React.FC<TDprops> = ({
   const buttonClass = () => {
     if (!title) {
       return "secondary disabled ";
-    } else {
-      return "success";
     }
+    return "success";
   };
   return (
     <div className="align-items-center mh-700" style={{ minHeight: "700px" }}>
