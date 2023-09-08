@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const {
-    tasks,
     filter,
     error,
     addTask,
@@ -15,18 +14,9 @@ function App() {
     removeTask,
     changeStatus,
     showToastMessage,
+    filteredTasks,
   } = useData();
 
-  let filteredTasks = tasks;
-  if (filter === "active") {
-    filteredTasks = tasks.filter((el) => el.completed !== true);
-  }
-  if (filter === "completed") {
-    filteredTasks = tasks.filter((el) => el.completed === true);
-  }
-  if (filter === "all") {
-    filteredTasks = tasks;
-  }
   return (
     <div className="container mt-5">
       <div className="row">

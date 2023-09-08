@@ -32,6 +32,7 @@ const useData = () => {
       .addTask(title)
       .then((tasks) => setTasks(tasks))
       .catch((error) => setErrors(error));
+    console.log(error);
   };
 
   const removeTask = (id: string) => {
@@ -47,9 +48,18 @@ const useData = () => {
       ?.then((tasks) => setTasks(tasks))
       .catch(({ error }) => console.log(error));
   };
+  let filteredTasks = tasks;
+  if (filter === "active") {
+    filteredTasks = tasks.filter((el) => el.completed !== true);
+  }
+  if (filter === "completed") {
+    filteredTasks = tasks.filter((el) => el.completed === true);
+  }
+  if (filter === "all") {
+    filteredTasks = tasks;
+  }
 
   return {
-    tasks,
     filter,
     error,
     changeFilter,
@@ -57,6 +67,7 @@ const useData = () => {
     removeTask,
     changeStatus,
     showToastMessage,
+    filteredTasks,
   };
 };
 
