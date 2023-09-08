@@ -40,6 +40,14 @@ const Todolist: React.FC<TDprops> = ({
       setTitle("");
     }
   };
+
+  const buttonClass = () => {
+    if (!title) {
+      return "secondary disabled ";
+    } else {
+      return "success";
+    }
+  };
   return (
     <div className="align-items-center mh-700" style={{ minHeight: "700px" }}>
       <h1 className="d-flex align-items-center justify-content-center">
@@ -62,23 +70,15 @@ const Todolist: React.FC<TDprops> = ({
             placeholder="Введите текст"
           />
           <button
-            className="btn btn-success "
+            className={"btn btn-" + buttonClass()}
             onClick={() => {
-              if (title) {
-                addTask(title);
-                setTitle("");
-              } else {
-                showToastMessage();
-              }
+              addTask(title);
+              setTitle("");
             }}
           >
             Создать
           </button>
         </div>
-
-        {/* {error && !title && (
-          <span className="text-danger ">Поле ввода не должно быть пустым</span>
-        )} */}
       </div>
       <div>
         <ul className="list-group">
