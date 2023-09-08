@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import icon from "./assets/trash.svg";
+import "./custom.css";
 
 type TaskType = {
   id: string;
@@ -90,7 +91,7 @@ const Todolist: React.FC<TDprops> = ({
             return (
               <li
                 key={el.id}
-                className="list-group-item list-group-item-action d-flex mb-2 align-items-center"
+                className="list-group-item list-group-item-action d-flex mb-2 align-items-center mw"
               >
                 <input
                   className="form-check-input me-3 m-0 "
@@ -99,7 +100,10 @@ const Todolist: React.FC<TDprops> = ({
                   checked={el.completed}
                   onChange={onChangeHandler}
                 />
-                <label className="form-check-label " htmlFor="flexCheckDefault">
+                <label
+                  className="form-check-label mwl "
+                  htmlFor="flexCheckDefault"
+                >
                   {el.title}
                 </label>
 

@@ -1,0 +1,9 @@
+.mw {
+    max-width: 500px;
+    word-break: break-all;
+}
+
+.mwl {
+    max-width: 350px;
+    word-break: break-all;
+}
