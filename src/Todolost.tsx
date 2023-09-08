@@ -16,7 +16,6 @@ type TDprops = {
   changeStatus: Function;
   filter: string;
   error: string;
-  showToastMessage: Function;
 };
 
 const Todolist: React.FC<TDprops> = ({
@@ -26,8 +25,6 @@ const Todolist: React.FC<TDprops> = ({
   addTask,
   changeStatus,
   filter,
-  error,
-  showToastMessage,
 }) => {
   const [title, setTitle] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

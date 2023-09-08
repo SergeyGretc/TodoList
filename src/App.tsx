@@ -13,7 +13,7 @@ function App() {
     changeFilter,
     removeTask,
     changeStatus,
-    showToastMessage,
+
     filteredTasks,
   } = useData();
 
@@ -29,7 +29,6 @@ function App() {
             changeStatus={changeStatus}
             filter={filter}
             error={error}
-            showToastMessage={showToastMessage}
           />
           <ToastContainer />
         </div>

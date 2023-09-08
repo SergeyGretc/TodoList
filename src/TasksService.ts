@@ -53,16 +53,17 @@ class TasksService {
     );
     const oldTasks = currentTasks.filter((t) => t.id !== id);
     const taskToChange = currentTasks.find((t) => t.id === id);
-
-    if (taskToChange) {
-      const newTask: Task = { ...taskToChange, completed };
-
-      const newTasks = [...oldTasks, newTask];
-      const sortedTasks = getSortedTasks(newTasks);
-      localStorage.setItem(this.dataKey, JSON.stringify([...sortedTasks]));
-
-      return Promise.resolve(getSortedTasks(newTasks));
+    if (!taskToChange) {
+      return Promise.reject({ error: `Task with id = ${id} not found` });
     }
+
+    const newTask: Task = { ...taskToChange, completed };
+
+    const newTasks = [...oldTasks, newTask];
+    const sortedTasks = getSortedTasks(newTasks);
+    localStorage.setItem(this.dataKey, JSON.stringify([...sortedTasks]));
+
+    return Promise.resolve(getSortedTasks(newTasks));
   };
 
   // fetch tasks from api

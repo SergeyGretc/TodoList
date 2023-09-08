@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { ServiceContext } from "./ServiceProvider";
 import TasksService from "./TasksService";
-import { toast } from "react-toastify";
+import { toastNotification } from "./utils";
+import { Positions } from "./utils";
 interface Services {
   TASKS_SERVICE: TasksService;
 }
@@ -18,18 +19,6 @@ const useData = () => {
     tasksService.fetchTasks().then((tasks) => setTasks(tasks));
   }, [tasksService]);
 
-  const showToastMessage = (value: string) => {
-    if (value === "success") {
-      toast.success("Задача успешно создана", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    }
-    if (value === "delete") {
-      toast.success("Задача успешно удалена", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    }
-  };
   const changeFilter = (value: string) => {
     setFilter(value);
   };
@@ -38,7 +27,7 @@ const useData = () => {
       .addTask(title)
       .then((tasks) => {
         setTasks(tasks);
-        showToastMessage("success");
+        toastNotification("success", Positions.TOP_LEFT);
       })
 
       .catch((error) => setErrors(error));
@@ -49,7 +38,7 @@ const useData = () => {
       .removeTask(id)
       .then(({ tasks }) => {
         setTasks(tasks);
-        showToastMessage("delete");
+        toastNotification("delete", Positions.TOP_RIGHT);
       })
 
       .catch(({ error }) => console.log(error));
@@ -58,8 +47,8 @@ const useData = () => {
   const changeStatus = (id: string, completed: boolean) => {
     tasksService
       .changeStatus(id, completed)
-      ?.then((tasks) => setTasks(tasks))
-      .catch(({ error }) => console.log(error));
+      .then((tasks) => setTasks(tasks))
+      .catch((error) => console.log(error));
   };
   let filteredTasks = tasks;
   if (filter === "active") {
@@ -79,7 +68,7 @@ const useData = () => {
     addTask,
     removeTask,
     changeStatus,
-    showToastMessage,
+
     filteredTasks,
   };
 };
