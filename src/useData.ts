@@ -18,11 +18,17 @@ const useData = () => {
     tasksService.fetchTasks().then((tasks) => setTasks(tasks));
   }, [tasksService]);
 
-  const showToastMessage = () => {
-    toast.error(error, {
-      position: toast.POSITION.TOP_CENTER,
-    });
-    setErrors("");
+  const showToastMessage = (value: string) => {
+    if (value === "success") {
+      toast.success("Задача успешно создана", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    if (value === "delete") {
+      toast.success("Задача успешно удалена", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
   const changeFilter = (value: string) => {
     setFilter(value);

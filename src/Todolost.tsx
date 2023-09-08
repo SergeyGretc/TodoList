@@ -73,6 +73,7 @@ const Todolist: React.FC<TDprops> = ({
             onClick={() => {
               addTask(title);
               setTitle("");
+              showToastMessage("success");
             }}
           >
             Создать
@@ -110,6 +111,7 @@ const Todolist: React.FC<TDprops> = ({
                   className="btn btn-danger ms-auto"
                   onClick={() => {
                     removeTask(el.id);
+                    showToastMessage("delete");
                   }}
                 >
                   {" "}
