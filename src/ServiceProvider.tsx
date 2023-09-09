@@ -9,7 +9,7 @@ interface ServiceProviderProps {
 
 const ServiceProvider: React.FC<ServiceProviderProps> = ({ children }) => {
   const services = {
-    TASKS_SERVICE: new TasksService(),
+    tasksService: new TasksService(),
   };
 
   return (

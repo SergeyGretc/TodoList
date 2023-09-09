@@ -4,16 +4,14 @@ import TasksService from "./TasksService";
 import { toastNotification } from "./utils";
 import { Positions } from "./utils";
 interface Services {
-  TASKS_SERVICE: TasksService;
+  tasksService: TasksService;
 }
 
-const useData = () => {
+const useTodoList = () => {
   const [tasks, setTasks] = useState<any[]>([]);
   const [error, setErrors] = useState("");
   const [filter, setFilter] = useState("all");
-  const { TASKS_SERVICE: tasksService } = useContext(
-    ServiceContext
-  ) as Services;
+  const { tasksService } = useContext(ServiceContext) as Services;
 
   useEffect(() => {
     tasksService.fetchTasks().then((tasks) => setTasks(tasks));
@@ -73,4 +71,4 @@ const useData = () => {
   };
 };
 
-export default useData;
+export default useTodoList;

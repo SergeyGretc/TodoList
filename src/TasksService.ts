@@ -66,7 +66,6 @@ class TasksService {
     return Promise.resolve(getSortedTasks(newTasks));
   };
 
-  // fetch tasks from api
   fetchTasks = () => {
     return Promise.resolve(this.tasks);
   };
