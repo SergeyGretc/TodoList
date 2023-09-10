@@ -1,6 +1,6 @@
 import React from "react";
 import Todolist from "./Todolost";
-import useData from "./useData";
+import useTodoList from "./useTodeList";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,7 @@ function App() {
     changeStatus,
 
     filteredTasks,
-  } = useData();
+  } = useTodoList();
 
   return (
     <div className="container mt-5">
