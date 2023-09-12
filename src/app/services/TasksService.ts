@@ -56,7 +56,7 @@ class TasksService {
     if (!taskToChange) {
       return Promise.reject({ error: `Task with id = ${id} not found` });
     }
-    completed = !completed;
+
     const newTask: Task = { ...taskToChange, completed };
 
     const newTasks = [...oldTasks, newTask];

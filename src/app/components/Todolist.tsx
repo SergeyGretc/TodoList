@@ -43,13 +43,9 @@ const Todolist: React.FC<TDprops> = ({
       setTitle("");
     }
   };
-
-  // const buttonClass = () => {
-  //   if (!title) {
-  //     return "secondary disabled ";
-  //   }
-  //   return "success";
-  // };
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    changeStatus(e.target.dataset.taskid, e.target.checked);
+  };
 
   return (
     <div className="align-items-center mh-700" style={{ minHeight: "700px" }}>
@@ -65,13 +61,6 @@ const Todolist: React.FC<TDprops> = ({
       <div>
         <ul className="list-group">
           {tasks.map((el) => {
-            const onChangeHandler = () => {
-              changeStatus(el.id, el.completed);
-            };
-            // e: React.ChangeEvent<HTMLInputElement>
-            // {
-            //   changeStatus(el.id, el.completed);
-            // };
             return (
               <li
                 data-testid="tasks-li"

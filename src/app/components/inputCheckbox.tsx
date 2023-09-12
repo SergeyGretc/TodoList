@@ -10,6 +10,7 @@ const InputCheckbox: React.FC<CBprops> = ({ onChangeHandler, task }) => {
       <input
         className="form-check-input me-3 m-0 "
         id="flexCheck"
+        data-taskid={task.id}
         type="checkbox"
         checked={task.completed}
         onChange={onChangeHandler}
