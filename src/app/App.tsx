@@ -1,6 +1,6 @@
 import React from "react";
-import Todolist from "./Todolost";
-import useTodoList from "./useTodeList";
+import Todolist from "./components/Todolist";
+import useTodoList from "./hooks/useTodeList";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

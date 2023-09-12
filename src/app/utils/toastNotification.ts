@@ -1,4 +1,3 @@
-import { Task } from "./TasksService";
 import { toast } from "react-toastify";
 
 export enum Positions {
@@ -10,12 +9,6 @@ export enum Positions {
   BOTTOM_CENTER = "TOP_CENTER",
 }
 
-export const getDataFromLocalStorage = (key: string) =>
-  JSON.parse(localStorage.getItem(key) || "[]");
-
-export const getSortedTasks = (tasks: Task[]) => {
-  return tasks.sort((a, b) => b.createdAt - a.createdAt);
-};
 const pos = (type: Positions) => {
   return { position: toast.POSITION[type] };
 };

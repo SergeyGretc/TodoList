@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { ServiceContext } from "./ServiceProvider";
-import TasksService from "./TasksService";
-import { toastNotification } from "./utils";
-import { Positions } from "./utils";
+import { ServiceContext } from "../services/ServiceProvider";
+import TasksService from "../services/TasksService";
+import { toastNotification } from "../utils/toastNotification";
+import { Positions } from "../utils/toastNotification";
 interface Services {
   tasksService: TasksService;
 }

@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
-import { getDataFromLocalStorage, getSortedTasks } from "./utils";
-
+import { getDataFromLocalStorage } from "../utils/getDataFromLocalstorage";
+import { getSortedTasks } from "../utils/getSortedTasks";
 export interface Task {
   id: string;
   title: string;
@@ -56,7 +56,7 @@ class TasksService {
     if (!taskToChange) {
       return Promise.reject({ error: `Task with id = ${id} not found` });
     }
-
+    completed = !completed;
     const newTask: Task = { ...taskToChange, completed };
 
     const newTasks = [...oldTasks, newTask];
