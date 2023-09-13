@@ -1,13 +1,13 @@
-import React from "react";
-import Todolist from "./components/Todolist";
+import Todolist from "./features/TodoList";
 import useTodoList from "./hooks/useTodeList";
+import React from "react";
+import "./styles/index.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const {
-    filter,
     error,
     addTask,
     changeFilter,
@@ -27,7 +27,6 @@ function App() {
             changeFilter={changeFilter}
             addTask={addTask}
             changeStatus={changeStatus}
-            filter={filter}
             error={error}
           />
           <ToastContainer />

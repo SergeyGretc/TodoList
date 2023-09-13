@@ -20,7 +20,7 @@ const useTodoList = () => {
   const changeFilter = (value: string) => {
     setFilter(value);
   };
-  const addTask = (title: string) => {
+  const addTask = (title: string): Promise<void> =>
     tasksService
       .addTask(title)
       .then((tasks) => {
@@ -29,9 +29,8 @@ const useTodoList = () => {
       })
 
       .catch((error) => setErrors(error));
-  };
 
-  const removeTask = (id: string) => {
+  const removeTask = (id: string) : Promise<void> =>
     tasksService
       .removeTask(id)
       .then(({ tasks }) => {
@@ -40,14 +39,13 @@ const useTodoList = () => {
       })
 
       .catch(({ error }) => console.log(error));
-  };
 
-  const changeStatus = (id: string, completed: boolean) => {
+  const changeStatus = (id: string, completed: boolean) : Promise<void> =>
     tasksService
       .changeStatus(id, completed)
       .then((tasks) => setTasks(tasks))
       .catch((error) => console.log(error));
-  };
+
   let filteredTasks = tasks;
   if (filter === "active") {
     filteredTasks = tasks.filter((el) => el.completed !== true);

@@ -1,6 +1,7 @@
+import { getDataFromLocalStorage, getSortedTasks } from "../utils";
 import { v4 } from "uuid";
-import { getDataFromLocalStorage } from "../utils/getDataFromLocalstorage";
-import { getSortedTasks } from "../utils/getSortedTasks";
+import delay from "../utils/delay";
+
 export interface Task {
   id: string;
   title: string;
@@ -12,7 +13,7 @@ class TasksService {
   private dataKey: string = "tasks";
   private tasks: Task[] = getDataFromLocalStorage(this.dataKey);
 
-  addTask = (title: string) => {
+  addTask = async (title: string) => {
     if (!title) {
       return Promise.reject("Cannot add an empty item");
     }
@@ -28,10 +29,13 @@ class TasksService {
     localStorage.setItem(this.dataKey, JSON.stringify([task, ...currentTasks]));
     const newCurrentTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
 
+    await delay(Math.random() * 2000);
     return Promise.resolve(getSortedTasks(newCurrentTasks));
   };
 
-  removeTask = (id: string): Promise<{ tasks: Task[]; error?: string }> => {
+  removeTask = async (
+    id: string
+  ): Promise<{ tasks: Task[]; error?: string }> => {
     const currentTasks: Task[] = JSON.parse(
       localStorage.getItem("tasks") || "[]"
     );
@@ -43,6 +47,8 @@ class TasksService {
     const newTasks = currentTasks.filter((t) => t.id !== id);
 
     localStorage.setItem(this.dataKey, JSON.stringify(newTasks));
+
+    await delay(Math.random() * 2000);
 
     return Promise.resolve({ tasks: newTasks });
   };

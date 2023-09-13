@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "shippedProposals": true,
+        "modules": "commonjs",
+        "exclude": ["proposal-dynamic-import"]
+      }
+    ],
+    "@babel/preset-react",
+    ["@babel/preset-typescript", { "allowNamespaces": true }]
+  ]
+}
